@@ -4,41 +4,40 @@
     <meta charset="UTF-8">
     <title>Каталог кросівок</title>
     <link rel="stylesheet" href="static/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <h1>Каталог кросівок 👟</h1>
     <div id="catalog">
-        <!-- Кроссовки будут здесь -->
-        <div class="sneaker" data-name="Nike Air Max 2026">
-            <img src="static/nike.jpg" alt="Nike Air Max 2026">
+        <!-- Пример кроссовок -->
+        <div class="sneaker" data-name="Nike Air Max 2026" data-photo="https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg">
+            <img src="https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg" alt="Nike Air Max 2026">
             <h3>Nike Air Max 2026</h3>
             <p>2750 грн</p>
-            <button onclick="order('Nike Air Max 2026')">Замовити</button>
+            <button onclick="order(this)">Замовити</button>
         </div>
 
-        <div class="sneaker" data-name="Adidas Ultraboost">
-            <img src="static/adidas.jpg" alt="Adidas Ultraboost">
+        <div class="sneaker" data-name="Adidas Ultraboost" data-photo="https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg">
+            <img src="https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg" alt="Adidas Ultraboost">
             <h3>Adidas Ultraboost</h3>
             <p>2600 грн</p>
-            <button onclick="order('Adidas Ultraboost')">Замовити</button>
-        </div>
-
-        <div class="sneaker" data-name="Asics Gel-Nimbus 10">
-            <img src="static/photo_3_2026-03-02_03-41-09.jpg" alt="Asics Gel-Nimbus 10">
-            <h3>Asics Gel-Nimbus 10</h3>
-            <p>2750 грн</p>
-            <button onclick="order('Asics Gel-Nimbus 10')">Замовити</button>
+            <button onclick="order(this)">Замовити</button>
         </div>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
 
-        function order(name) {
-            tg.sendData(name); // Отправляем название кроссовок боту
+        function order(button) {
+            const parent = button.parentElement;
+            const name = parent.dataset.name;
+            const photo = parent.dataset.photo;
+
+            // Отправляем данные в бота
+            tg.sendData(JSON.stringify({name: name, photo: photo}));
+
             alert(`Ваше замовлення на "${name}" відправлено менеджеру ✅`);
         }
     </script>
 </body>
 </html>
-
