@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог кросівок</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Каталог кросівок 👟</h1>
+    <div id="catalog">
+        <!-- Кроссовки будут здесь -->
+        <div class="sneaker" data-name="Nike Air Max 2026">
+            <img src="static/nike.jpg" alt="Nike Air Max 2026">
+            <h3>Nike Air Max 2026</h3>
+            <p>2750 грн</p>
+            <button onclick="order('Nike Air Max 2026')">Замовити</button>
+        </div>
+
+        <div class="sneaker" data-name="Adidas Ultraboost">
+            <img src="static/adidas.jpg" alt="Adidas Ultraboost">
+            <h3>Adidas Ultraboost</h3>
+            <p>2600 грн</p>
+            <button onclick="order('Adidas Ultraboost')">Замовити</button>
+        </div>
+
+        <div class="sneaker" data-name="Asics Gel-Nimbus 10">
+            <img src="static/asics.jpg" alt="Asics Gel-Nimbus 10">
+            <h3>Asics Gel-Nimbus 10</h3>
+            <p>2750 грн</p>
+            <button onclick="order('Asics Gel-Nimbus 10')">Замовити</button>
+        </div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+
+        function order(name) {
+            tg.sendData(name); // Отправляем название кроссовок боту
+            alert(`Ваше замовлення на "${name}" відправлено менеджеру ✅`);
+        }
+    </script>
+</body>
+</html>
