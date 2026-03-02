@@ -4,41 +4,34 @@
     <meta charset="UTF-8">
     <title>Каталог кросівок</title>
     <link rel="stylesheet" href="static/style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <h1>Каталог кросівок 👟</h1>
     <div id="catalog">
-        <!-- Пример кроссовок -->
-        <div class="sneaker" data-name="Nike Air Max 2026" data-photo="https://edick7991-crypto.github.io/ranfit-catalog/static/photo_3_2026-03-02_03-41-09.jpg">
-            <img src="https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg" alt="Nike Air Max 2026">
+        <div class="sneaker" data-name="Nike Air Max 2026" data-photo="https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg">
+            <img src="static/nike.jpg" alt="Nike Air Max 2026">
             <h3>Nike Air Max 2026</h3>
             <p>2750 грн</p>
-            <button onclick="order(this)">Замовити</button>
+            <button onclick="order('Nike Air Max 2026', 'https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg')">Замовити</button>
         </div>
 
         <div class="sneaker" data-name="Adidas Ultraboost" data-photo="https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg">
-            <img src="https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg" alt="Adidas Ultraboost">
+            <img src="static/adidas.jpg" alt="Adidas Ultraboost">
             <h3>Adidas Ultraboost</h3>
             <p>2600 грн</p>
-            <button onclick="order(this)">Замовити</button>
+            <button onclick="order('Adidas Ultraboost', 'https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg')">Замовити</button>
         </div>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
 
-        function order(button) {
-            const parent = button.parentElement;
-            const name = parent.dataset.name;
-            const photo = parent.dataset.photo;
-
-            // Отправляем данные в бота
-            tg.sendData(JSON.stringify({name: name, photo: photo}));
+        function order(name, photo) {
+            const data = { name: name, photo: photo };
+            tg.sendData(JSON.stringify(data)); // отправляем JSON с названием и фото
 
             alert(`Ваше замовлення на "${name}" відправлено менеджеру ✅`);
         }
     </script>
 </body>
 </html>
-
