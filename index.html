@@ -3,48 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Каталог кросівок</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <h1>Каталог кросівок 👟</h1>
+    <div id="catalog">
+        <div class="sneaker" data-name="Nike Air Max 2026" data-photo="https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg">
+            <img src="static/nike.jpg" alt="Nike Air Max 2026">
+            <h3>Nike Air Max 2026</h3>
+            <p>2750 грн</p>
+            <button onclick="order('Nike Air Max 2026', 'https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg')">Замовити</button>
+        </div>
 
-    <div>
-        <h3>Nike Air Max 2026</h3>
-        <img src="https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg" width="200">
-        <p>2750 грн</p>
-        <button onclick="order('Nike Air Max 2026', 'https://edick7991-crypto.github.io/ranfit-catalog/static/nike.jpg')">
-            Замовити
-        </button>
-    </div>
-
-    <br><br>
-
-    <div>
-        <h3>Adidas Ultraboost</h3>
-        <img src="https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg" width="200">
-        <p>2600 грн</p>
-        <button onclick="order('Adidas Ultraboost', 'https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg')">
-            Замовити
-        </button>
+        <div class="sneaker" data-name="Adidas Ultraboost" data-photo="https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg">
+            <img src="static/adidas.jpg" alt="Adidas Ultraboost">
+            <h3>Adidas Ultraboost</h3>
+            <p>2600 грн</p>
+            <button onclick="order('Adidas Ultraboost', 'https://edick7991-crypto.github.io/ranfit-catalog/static/adidas.jpg')">Замовити</button>
+        </div>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
 
         function order(name, photo) {
-            const data = {
-                name: name,
-                photo: photo
-            };
+            if (!tg) {
+                alert("⚠️ Бот не доступний! Відкрийте каталог через Telegram Web App.");
+                return;
+            }
 
-            tg.sendData(JSON.stringify(data));
+            const data = { name: name, photo: photo };
+            tg.sendData(JSON.stringify(data)); // Отправка данных боту
 
-            tg.showPopup({
-                title: "Замовлення створено ✅",
-                message: "З вами скоро звʼяжеться менеджер.",
-                buttons: [{ type: "ok" }]
-            });
-
-            tg.close();
+            alert(`✅ Ваше замовлення на "${name}" відправлено менеджеру!`);
         }
     </script>
 </body>
